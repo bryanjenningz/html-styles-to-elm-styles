@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Html Styles To Elm Styles</title>
+    <style>
+      .input-style {
+        width: 47%;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Paste your HTML inline styles on the left textbox.</p>
+    <p>For example, you could paste the following into the left textbox.</p>
+    <pre>
+position: absolute;
+z-index: 1;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.5);
+    </pre>
+    <textarea id="css-input" class="input-style" placeholder="HTML inline styles"></textarea>
+    <textarea id="elm-input" class="input-style" placeholder="Elm inline styles" /></textarea>
+    <script>
+      var cssInput = document.querySelector("#css-input");
+      var elmInput = document.querySelector("#elm-input");
+
+      cssInput.addEventListener("keyup", function() {
+        elmInput.value = toElmStyles(cssInput.value);
+      });
+
+      function toElmStyles(styles) {
+        return (
+          "[ " +
+          styles
+            .split("\n")
+            .filter(line => line.trim().length > 0)
+            .map(line => line.replace(/[ ;]+/g, ""))
+            .map(line => line.trim().match(/([^:]+):([^:]+)/))
+            .filter(match => match)
+            .map(([_, prop, value]) => `( "${prop}", "${value}" )`)
+            .join("\n, ") +
+          "\n]"
+        );
+      }
+
+      // Example usage of toElmStyles:
+      // console.log(
+      //   toElmStyles(`
+      //     position: absolute;
+      //     z-index: 1;
+      //     width: 100%;
+      //     height: 100%;
+      //     background: rgba(0,0,0,0.5);
+      //   `)
+      // );
+    </script>
+  </body>
+</html>
