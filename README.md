@@ -10,7 +10,7 @@ Translate inline Html styles to Elm styles
 4. Copy the Elm styles to your clipboard and use it in your Elm project
 
 ### Use online
-1. Go to this Ellie link: https://embed.ellie-app.com/3JytcPKmqTGa1/0
+1. Go to this Ellie link: https://embed.ellie-app.com/3JytcPKmqTGa1/3
 2. Click the "Results" button
 3. Paste your inline Html styles into the left textbox
 4. The Elm styles will automatically appear into the right textbox
